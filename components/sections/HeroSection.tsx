@@ -12,9 +12,9 @@ const HeroScene = dynamic(() => import("@/components/3d/HeroScene").then((m) => 
 });
 
 export function HeroSection({ active = true }: { active?: boolean }) {
-  const scrollToProjects = (e: React.MouseEvent) => {
+  const scrollToLab = (e: React.MouseEvent) => {
     e.preventDefault();
-    const el = document.getElementById("projects");
+    const el = document.getElementById("lab");
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -88,12 +88,12 @@ export function HeroSection({ active = true }: { active?: boolean }) {
         >
           <Magnetic className="w-full sm:w-auto">
             <a
-              href="#projects"
-              onClick={scrollToProjects}
+              href="#lab"
+              onClick={scrollToLab}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 min-h-[48px] rounded-full font-mono text-xs md:text-sm tracking-wider uppercase text-white bg-gradient-to-r from-electric to-royal-600 hover:from-cyanGlow hover:to-electric transition-all duration-300 shadow-neon-blue hover:shadow-neon-cyan focus:outline-none focus-visible:ring-2 focus-visible:ring-cyanGlow"
             >
               <Compass className="w-4 h-4 text-cyanGlow" />
-              <span>EXPLORE OUR WORK</span>
+              <span>EXPLORE THE LAB</span>
             </a>
           </Magnetic>
 

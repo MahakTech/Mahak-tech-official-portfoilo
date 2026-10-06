@@ -12,7 +12,7 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { TechWorldSection } from "@/components/sections/TechWorldSection";
-import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { ExperimentalLabSection } from "@/components/sections/ExperimentalLabSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { WhySection } from "@/components/sections/WhySection";
 import { VisionSection } from "@/components/sections/VisionSection";
@@ -54,7 +54,7 @@ export function SiteShell() {
           <AboutSection />
           <ServicesSection />
           <TechWorldSection />
-          <ProjectsSection />
+          <ExperimentalLabSection />
           <ProcessSection />
           <WhySection />
           <VisionSection />
