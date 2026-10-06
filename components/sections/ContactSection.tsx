@@ -2,11 +2,12 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, ArrowUpRight, Copy, Check } from "lucide-react";
+import { Mail, Github, Linkedin, Youtube, ArrowUpRight, Copy, Check } from "lucide-react";
 
 const EMAIL = "mahaktech90@gmail.com";
 const GITHUB = "https://github.com/MahakTech";
 const LINKEDIN = "https://www.linkedin.com/company/mahak-tech/?viewAsMember=true";
+const YOUTUBE = "https://www.youtube.com/@MahakTech-b6b";
 
 export function ContactSection() {
   const [copied, setCopied] = useState(false);
@@ -29,7 +30,7 @@ export function ContactSection() {
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(0,102,255,0.22),transparent_60%)] pointer-events-none" />
 
-      <div className="relative z-10 max-w-5xl mx-auto">
+      <div className="relative z-10 max-w-6xl mx-auto">
         <div className="text-center">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-electric/30 bg-electric/10 text-cyanGlow text-xs font-mono tracking-widest uppercase mb-6">
             08 // Contact
@@ -51,29 +52,31 @@ export function ContactSection() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {/* Email */}
-          <div className="group relative p-6 rounded-2xl glass-panel hover:glass-panel-glow transition-all flex flex-col">
-            <div className="flex items-center justify-between mb-5">
-              <span className="text-xs font-mono tracking-widest text-cyanGlow">EMAIL</span>
-              <Mail className="w-5 h-5 text-cyanGlow" />
-            </div>
-            <a
-              href={`mailto:${EMAIL}`}
-              className="text-base sm:text-lg font-mono font-bold text-white break-all hover:text-cyanGlow transition-colors"
-            >
-              {EMAIL}
-            </a>
-            <div className="mt-6 flex items-center gap-3">
+          <div className="group relative p-6 rounded-2xl glass-panel hover:glass-panel-glow transition-all flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-5">
+                <span className="text-xs font-mono tracking-widest text-cyanGlow">EMAIL</span>
+                <Mail className="w-5 h-5 text-cyanGlow" />
+              </div>
               <a
                 href={`mailto:${EMAIL}`}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-electric to-royal-600 text-white text-xs font-mono tracking-wider uppercase shadow-neon-blue min-h-[44px]"
+                className="text-sm sm:text-base font-mono font-bold text-white break-all hover:text-cyanGlow transition-colors"
+              >
+                {EMAIL}
+              </a>
+            </div>
+            <div className="mt-6 flex flex-wrap items-center gap-2">
+              <a
+                href={`mailto:${EMAIL}`}
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-gradient-to-r from-electric to-royal-600 text-white text-xs font-mono tracking-wider uppercase shadow-neon-blue min-h-[44px]"
               >
                 Write to us <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
               <button
                 onClick={copyEmail}
-                className="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-full border border-slate-700 text-slate-300 hover:text-white hover:border-cyanGlow/50 text-xs font-mono min-h-[44px]"
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-full border border-slate-700 text-slate-300 hover:text-white hover:border-cyanGlow/50 text-xs font-mono min-h-[44px]"
                 aria-label="Copy email address"
               >
                 {copied ? <Check className="w-3.5 h-3.5 text-cyanGlow" /> : <Copy className="w-3.5 h-3.5" />}
@@ -89,13 +92,15 @@ export function ContactSection() {
             rel="noopener noreferrer"
             className="group relative p-6 rounded-2xl glass-panel hover:glass-panel-glow transition-all flex flex-col justify-between"
           >
-            <div className="flex items-center justify-between mb-5">
-              <span className="text-xs font-mono tracking-widest text-cyanGlow">GITHUB</span>
-              <Github className="w-5 h-5 text-cyanGlow" />
+            <div>
+              <div className="flex items-center justify-between mb-5">
+                <span className="text-xs font-mono tracking-widest text-cyanGlow">GITHUB</span>
+                <Github className="w-5 h-5 text-cyanGlow" />
+              </div>
+              <span className="text-sm sm:text-base font-mono font-bold text-white break-all group-hover:text-cyanGlow transition-colors">
+                MahakTech
+              </span>
             </div>
-            <span className="text-base sm:text-lg font-mono font-bold text-white break-all group-hover:text-cyanGlow transition-colors">
-              {GITHUB}
-            </span>
             <span className="mt-6 inline-flex items-center gap-2 text-xs font-mono text-slate-400 group-hover:text-cyanGlow">
               Open in new tab <ArrowUpRight className="w-3.5 h-3.5" />
             </span>
@@ -108,15 +113,38 @@ export function ContactSection() {
             rel="noopener noreferrer"
             className="group relative p-6 rounded-2xl glass-panel hover:glass-panel-glow transition-all flex flex-col justify-between"
           >
-            <div className="flex items-center justify-between mb-5">
-              <span className="text-xs font-mono tracking-widest text-cyanGlow">LINKEDIN</span>
-              <Linkedin className="w-5 h-5 text-cyanGlow" />
+            <div>
+              <div className="flex items-center justify-between mb-5">
+                <span className="text-xs font-mono tracking-widest text-cyanGlow">LINKEDIN</span>
+                <Linkedin className="w-5 h-5 text-cyanGlow" />
+              </div>
+              <span className="text-sm sm:text-base font-mono font-bold text-white break-all group-hover:text-cyanGlow transition-colors">
+                MahakTech
+              </span>
             </div>
-            <span className="text-base font-mono font-bold text-white break-all group-hover:text-cyanGlow transition-colors">
-              {LINKEDIN}
-            </span>
             <span className="mt-6 inline-flex items-center gap-2 text-xs font-mono text-slate-400 group-hover:text-cyanGlow">
               Open in new tab <ArrowUpRight className="w-3.5 h-3.5" />
+            </span>
+          </a>
+
+          {/* YouTube */}
+          <a
+            href={YOUTUBE}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative p-6 rounded-2xl glass-panel hover:glass-panel-glow transition-all flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center justify-between mb-5">
+                <span className="text-xs font-mono tracking-widest text-red-400">YOUTUBE</span>
+                <Youtube className="w-5 h-5 text-red-500 group-hover:scale-110 transition-transform" />
+              </div>
+              <span className="text-sm sm:text-base font-mono font-bold text-white break-all group-hover:text-red-400 transition-colors">
+                @MahakTech-b6b
+              </span>
+            </div>
+            <span className="mt-6 inline-flex items-center gap-2 text-xs font-mono text-slate-400 group-hover:text-red-400">
+              Watch on YouTube <ArrowUpRight className="w-3.5 h-3.5" />
             </span>
           </a>
         </div>

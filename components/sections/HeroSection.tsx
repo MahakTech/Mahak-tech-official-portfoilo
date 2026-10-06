@@ -4,14 +4,17 @@ import React from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowDown, Mail, Compass } from "lucide-react";
+import { ArrowDown, Mail, Compass, Eye, MousePointerClick, Activity } from "lucide-react";
 import { Magnetic } from "@/components/ui/Magnetic";
+import { useTelemetry } from "@/components/providers/TelemetryProvider";
 
 const HeroScene = dynamic(() => import("@/components/3d/HeroScene").then((m) => m.HeroScene), {
   ssr: false,
 });
 
 export function HeroSection({ active = true }: { active?: boolean }) {
+  const { views, clicks, isClickPulsing } = useTelemetry();
+
   const scrollToLab = (e: React.MouseEvent) => {
     e.preventDefault();
     const el = document.getElementById("lab");
@@ -108,12 +111,65 @@ export function HeroSection({ active = true }: { active?: boolean }) {
           </Magnetic>
         </motion.div>
 
+        {/* Live Telemetry / Views & Clicks Status Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-12 flex flex-wrap items-center justify-center gap-3 sm:gap-6 px-5 py-2.5 rounded-full glass-panel border border-slate-800/80 bg-space-950/60 backdrop-blur-md font-mono text-xs"
+        >
+          {/* Live Page Views */}
+          <div className="flex items-center gap-2 text-slate-300">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyanGlow opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyanGlow" />
+            </span>
+            <Eye className="w-3.5 h-3.5 text-cyanGlow" />
+            <span className="text-slate-400 text-[11px] uppercase tracking-wider">VIEWS:</span>
+            <span className="font-bold text-white text-xs sm:text-sm tracking-wider">
+              {views.toLocaleString()}
+            </span>
+          </div>
+
+          <span className="text-slate-700 hidden sm:inline">|</span>
+
+          {/* Real-time User Clicks (ticks on every click) */}
+          <div
+            className={`flex items-center gap-2 transition-all duration-200 ${
+              isClickPulsing ? "text-cyanGlow scale-105" : "text-slate-300"
+            }`}
+          >
+            <MousePointerClick
+              className={`w-3.5 h-3.5 transition-transform ${
+                isClickPulsing ? "text-cyanGlow scale-125" : "text-electric"
+              }`}
+            />
+            <span className="text-slate-400 text-[11px] uppercase tracking-wider">LIVE CLICKS:</span>
+            <span
+              className={`font-bold text-xs sm:text-sm tracking-wider transition-colors ${
+                isClickPulsing ? "text-cyanGlow font-black" : "text-white"
+              }`}
+            >
+              {clicks.toLocaleString()}
+            </span>
+          </div>
+
+          <span className="text-slate-700 hidden sm:inline">|</span>
+
+          {/* System Network Status */}
+          <div className="flex items-center gap-2 text-slate-300">
+            <Activity className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="text-slate-400 text-[11px] uppercase tracking-wider">SYSTEM:</span>
+            <span className="font-bold text-emerald-400 text-[11px] tracking-wider">ONLINE</span>
+          </div>
+        </motion.div>
+
         {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="mt-16 md:mt-24 flex flex-col items-center gap-2 text-slate-500 font-mono text-[11px] tracking-widest"
+          className="mt-14 md:mt-20 flex flex-col items-center gap-2 text-slate-500 font-mono text-[11px] tracking-widest"
         >
           <span>SCROLL TO ENTER</span>
           <ArrowDown className="w-3.5 h-3.5 animate-bounce text-cyanGlow" />

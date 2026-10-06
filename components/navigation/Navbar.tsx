@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight, Mail } from "lucide-react";
+import { Menu, X, ArrowUpRight, Mail, Youtube, Eye, MousePointerClick } from "lucide-react";
+import { useTelemetry } from "@/components/providers/TelemetryProvider";
 
 const NAV_LINKS = [
   { name: "Home", href: "#hero" },
@@ -19,6 +20,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { views, clicks, isClickPulsing } = useTelemetry();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,9 +56,9 @@ export function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 py-3.5 px-4 md:px-8 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 py-4 px-4 md:px-8 ${
           isScrolled
-            ? "bg-space-950/80 backdrop-blur-xl border-b border-electric/15 shadow-glass"
+            ? "bg-space-950/80 backdrop-blur-xl border-b border-slate-900/80 shadow-2xl py-3"
             : "bg-transparent"
         }`}
       >
@@ -116,8 +118,19 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Direct Contact Button */}
+          {/* Direct Actions & Socials */}
           <div className="hidden sm:flex items-center gap-3">
+            <a
+              href="https://www.youtube.com/@MahakTech-b6b"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-full border border-slate-800 bg-space-900/60 text-slate-300 hover:text-red-400 hover:border-red-500/40 transition-colors"
+              aria-label="MahakTech YouTube Channel"
+              title="MahakTech YouTube Channel"
+            >
+              <Youtube className="w-4 h-4 text-red-500" />
+            </a>
+
             <a
               href="mailto:mahaktech90@gmail.com"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs tracking-wider uppercase text-white bg-electric/20 border border-electric/50 hover:bg-electric hover:border-cyanGlow transition-all duration-200 shadow-[0_0_15px_rgba(0,102,255,0.25)] hover:shadow-neon-blue"
@@ -147,7 +160,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed inset-0 z-30 pt-20 px-6 pb-8 bg-space-950/95 backdrop-blur-2xl flex flex-col justify-between lg:hidden border-b border-electric/20"
+            className="fixed inset-0 z-30 pt-20 px-6 pb-8 bg-space-950/95 backdrop-blur-2xl flex flex-col justify-between lg:hidden border-b border-electric/20 overflow-y-auto"
           >
             <div className="flex flex-col space-y-4 pt-4">
               <span className="text-[11px] font-mono tracking-widest text-slate-400 uppercase">
@@ -175,7 +188,23 @@ export function Navbar() {
               </div>
             </div>
 
-            <div className="pt-6 border-t border-slate-800/80 space-y-3">
+            <div className="pt-6 border-t border-slate-800/80 space-y-4">
+              {/* Telemetry in Drawer */}
+              <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-space-900 border border-slate-800 font-mono text-xs text-slate-300">
+                <span className="flex items-center gap-1.5 text-cyanGlow">
+                  <Eye className="w-3.5 h-3.5" />
+                  <span>{views.toLocaleString()} VIEWS</span>
+                </span>
+                <span
+                  className={`flex items-center gap-1.5 ${
+                    isClickPulsing ? "text-cyanGlow font-bold" : "text-slate-300"
+                  }`}
+                >
+                  <MousePointerClick className="w-3.5 h-3.5 text-electric" />
+                  <span>{clicks.toLocaleString()} CLICKS</span>
+                </span>
+              </div>
+
               <span className="text-[11px] font-mono tracking-widest text-slate-400 uppercase">
                 Direct Contact
               </span>
@@ -186,7 +215,7 @@ export function Navbar() {
                 <Mail className="w-4 h-4" />
                 <span>mahaktech90@gmail.com</span>
               </a>
-              <div className="flex justify-center gap-6 pt-2 text-xs font-mono text-slate-400">
+              <div className="flex justify-center flex-wrap gap-5 pt-2 text-xs font-mono text-slate-400">
                 <a
                   href="https://github.com/MahakTech"
                   target="_blank"
@@ -202,6 +231,14 @@ export function Navbar() {
                   className="hover:text-cyanGlow transition-colors"
                 >
                   LinkedIn ↗
+                </a>
+                <a
+                  href="https://www.youtube.com/@MahakTech-b6b"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-red-400 transition-colors"
+                >
+                  YouTube ↗
                 </a>
               </div>
             </div>

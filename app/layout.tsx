@@ -49,6 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     sameAs: [
       "https://github.com/MahakTech",
       "https://www.linkedin.com/company/mahak-tech/",
+      "https://www.youtube.com/@MahakTech-b6b",
     ],
   };
 

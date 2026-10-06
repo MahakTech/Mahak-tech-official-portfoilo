@@ -5,6 +5,8 @@ import { AnimatePresence, MotionConfig } from "framer-motion";
 import { LoadingScreen } from "@/components/intro/LoadingScreen";
 import { PortalIntro } from "@/components/intro/PortalIntro";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+import { TelemetryProvider } from "@/components/providers/TelemetryProvider";
+import { SiteTelemetryHUD } from "@/components/ui/SiteTelemetryHUD";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -39,29 +41,34 @@ export function SiteShell() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <SmoothScrollProvider>
-        <CustomCursor />
-        <div className="ambient-bg" aria-hidden="true" />
+      <TelemetryProvider>
+        <SmoothScrollProvider>
+          <CustomCursor />
+          <div className="ambient-bg" aria-hidden="true" />
 
-        <AnimatePresence>
-          {phase === "loading" && <LoadingScreen key="loading" onDone={onLoaded} />}
-          {phase === "intro" && <PortalIntro key="intro" onEnter={onEnter} />}
-        </AnimatePresence>
+          <AnimatePresence>
+            {phase === "loading" && <LoadingScreen key="loading" onDone={onLoaded} />}
+            {phase === "intro" && <PortalIntro key="intro" onEnter={onEnter} />}
+          </AnimatePresence>
 
-        <Navbar />
-        <main id="main" className="relative z-[1]">
-          <HeroSection active={phase === "main"} />
-          <AboutSection />
-          <ServicesSection />
-          <TechWorldSection />
-          <ExperimentalLabSection />
-          <ProcessSection />
-          <WhySection />
-          <VisionSection />
-          <ContactSection />
-        </main>
-        <Footer />
-      </SmoothScrollProvider>
+          <Navbar />
+          <main id="main" className="relative z-[1]">
+            <HeroSection active={phase === "main"} />
+            <AboutSection />
+            <ServicesSection />
+            <TechWorldSection />
+            <ExperimentalLabSection />
+            <ProcessSection />
+            <WhySection />
+            <VisionSection />
+            <ContactSection />
+          </main>
+          <Footer />
+
+          {/* Floating Live Telemetry HUD */}
+          <SiteTelemetryHUD />
+        </SmoothScrollProvider>
+      </TelemetryProvider>
     </MotionConfig>
   );
 }
