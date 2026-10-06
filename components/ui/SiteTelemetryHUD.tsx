@@ -2,11 +2,11 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Eye, MousePointerClick, Activity, ChevronDown, ChevronUp, Zap } from "lucide-react";
+import { Eye, MousePointerClick, Activity, ChevronDown, ChevronUp, Zap, Users } from "lucide-react";
 import { useTelemetry } from "@/components/providers/TelemetryProvider";
 
 export function SiteTelemetryHUD() {
-  const { views, clicks, sessionClicks, isClickPulsing, recordManualClick } = useTelemetry();
+  const { views, uniqueVisitors, clicks, sessionClicks, isClickPulsing, recordManualClick } = useTelemetry();
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -37,7 +37,7 @@ export function SiteTelemetryHUD() {
           {/* Views Indicator */}
           <div
             className="flex items-center gap-1.5 text-xs text-slate-300"
-            title="Total recorded website visits"
+            title="Actual recorded website page visits"
           >
             <Eye className="w-3.5 h-3.5 text-cyanGlow" />
             <span className="font-bold text-white tracking-wider">
@@ -58,7 +58,7 @@ export function SiteTelemetryHUD() {
                 ? "bg-cyanGlow/20 text-cyanGlow scale-105"
                 : "text-slate-300 hover:text-white hover:bg-space-800"
             }`}
-            title="Click anywhere on the website to increment live interaction counter"
+            title="Click anywhere on the website to increment actual live interaction counter"
           >
             <MousePointerClick
               className={`w-3.5 h-3.5 transition-transform ${
@@ -105,23 +105,30 @@ export function SiteTelemetryHUD() {
                 <div className="flex items-center gap-2 text-cyanGlow">
                   <Activity className="w-4 h-4" />
                   <span className="font-bold tracking-wider uppercase text-[11px]">
-                    Site Telemetry
+                    Actual Telemetry
                   </span>
                 </div>
-                <span className="text-[10px] text-emerald-400 font-mono">STATUS: OPTIMAL</span>
+                <span className="text-[10px] text-emerald-400 font-mono">SERVER: LIVE</span>
               </div>
 
               <div className="space-y-2 text-slate-300">
                 <div className="flex items-center justify-between">
                   <span className="text-slate-400 flex items-center gap-1.5">
-                    <Eye className="w-3 h-3 text-cyanGlow" /> Total Visits
+                    <Eye className="w-3 h-3 text-cyanGlow" /> Actual Page Views
                   </span>
                   <span className="font-bold text-white">{views.toLocaleString()}</span>
                 </div>
 
                 <div className="flex items-center justify-between">
                   <span className="text-slate-400 flex items-center gap-1.5">
-                    <Zap className="w-3 h-3 text-electric" /> Total Site Clicks
+                    <Users className="w-3 h-3 text-emerald-400" /> Unique Visitors
+                  </span>
+                  <span className="font-bold text-emerald-300">{uniqueVisitors.toLocaleString()}</span>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-400 flex items-center gap-1.5">
+                    <Zap className="w-3 h-3 text-electric" /> Actual Recorded Clicks
                   </span>
                   <span className="font-bold text-cyanGlow">{clicks.toLocaleString()}</span>
                 </div>
@@ -134,7 +141,7 @@ export function SiteTelemetryHUD() {
 
               <div className="pt-2 border-t border-slate-800/80">
                 <p className="text-[10px] text-slate-500 leading-relaxed">
-                  Real-time activity telemetry tracks visitor traffic and user interactions across all MahakTech 3D experiments & UI components.
+                  Real backend-recorded analytics. Every visitor load and user interaction across the site increments the server counter in real time.
                 </p>
               </div>
             </motion.div>
