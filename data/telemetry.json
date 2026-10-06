@@ -1,9 +1,10 @@
 {
-  "totalViews": 2,
-  "uniqueVisitors": 1,
-  "totalClicks": 4,
+  "totalViews": 4,
+  "uniqueVisitors": 2,
+  "totalClicks": 22,
   "visitors": {
-    "vis_272p1hq_muwmsir5": 1791288280932
+    "vis_272p1hq_muwmsir5": 1791288280932,
+    "vis_cwi68vk_muwmwl96": 1791288471013
   },
-  "lastUpdated": "2026-10-06T12:04:49.223Z"
+  "lastUpdated": "2026-10-06T12:09:36.082Z"
 }
