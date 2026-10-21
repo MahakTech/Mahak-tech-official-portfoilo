@@ -15,7 +15,10 @@ import {
   Box,
   Layers,
   ChevronRight,
+  Calendar,
+  ArrowUpRight,
 } from "lucide-react";
+import { BOOKING_URL } from "@/lib/constants";
 
 const SERVICES = [
   {
@@ -202,6 +205,32 @@ export function ServicesSection() {
               </div>
             </div>
           </div>
+        </div>
+        {/* Services Discovery Callout */}
+        <div className="mt-14 p-6 sm:p-8 rounded-2xl glass-panel border border-electric/30 bg-gradient-to-r from-space-950 via-space-900 to-space-950 flex flex-col md:flex-row items-center justify-between gap-6 shadow-glass-elevated">
+          <div className="space-y-1.5 text-center md:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-electric/30 bg-electric/10 text-cyanGlow text-[11px] font-mono tracking-widest uppercase">
+              <span>DISCOVERY & ARCHITECTURE</span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              Ready to engineer your next digital solution?
+            </h3>
+            <p className="text-sm text-slate-400 max-w-xl">
+              Discuss your project requirements, technology stack, and timeline directly with MahakTech.
+            </p>
+          </div>
+
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 min-h-[48px] rounded-full font-mono text-xs uppercase tracking-wider text-white bg-gradient-to-r from-electric to-royal-600 hover:from-cyanGlow hover:to-electric transition-all duration-300 shadow-neon-blue hover:shadow-neon-cyan focus:outline-none focus-visible:ring-2 focus-visible:ring-cyanGlow"
+            aria-label="Book a Discovery Call with MahakTech (opens in a new tab)"
+          >
+            <Calendar className="w-4 h-4 text-cyanGlow" />
+            <span>Book a Discovery Call</span>
+            <ArrowUpRight className="w-3.5 h-3.5 opacity-80" />
+          </a>
         </div>
       </div>
     </section>

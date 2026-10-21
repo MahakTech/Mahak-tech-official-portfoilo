@@ -4,9 +4,10 @@ import React from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowDown, Mail, Compass, Eye, MousePointerClick, Activity } from "lucide-react";
+import { ArrowDown, Mail, Compass, Eye, MousePointerClick, Activity, Calendar, ArrowUpRight } from "lucide-react";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { useTelemetry } from "@/components/providers/TelemetryProvider";
+import { BOOKING_URL } from "@/lib/constants";
 
 const HeroScene = dynamic(() => import("@/components/3d/HeroScene").then((m) => m.HeroScene), {
   ssr: false,
@@ -91,22 +92,26 @@ export function HeroSection({ active = true }: { active?: boolean }) {
         >
           <Magnetic className="w-full sm:w-auto">
             <a
-              href="#lab"
-              onClick={scrollToLab}
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 min-h-[48px] rounded-full font-mono text-xs md:text-sm tracking-wider uppercase text-white bg-gradient-to-r from-electric to-royal-600 hover:from-cyanGlow hover:to-electric transition-all duration-300 shadow-neon-blue hover:shadow-neon-cyan focus:outline-none focus-visible:ring-2 focus-visible:ring-cyanGlow"
+              aria-label="Book a Discovery Call with MahakTech (opens in a new tab)"
             >
-              <Compass className="w-4 h-4 text-cyanGlow" />
-              <span>EXPLORE THE LAB</span>
+              <Calendar className="w-4 h-4 text-cyanGlow" />
+              <span>BOOK A DISCOVERY CALL</span>
+              <ArrowUpRight className="w-3.5 h-3.5 opacity-80" />
             </a>
           </Magnetic>
 
           <Magnetic className="w-full sm:w-auto">
             <a
-              href="mailto:mahaktech90@gmail.com"
+              href="#lab"
+              onClick={scrollToLab}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 min-h-[48px] rounded-full font-mono text-xs md:text-sm tracking-wider uppercase text-slate-200 hover:text-white bg-space-900/80 hover:bg-space-800 border border-slate-700/80 hover:border-cyanGlow/50 transition-all duration-200 backdrop-blur-md focus:outline-none focus-visible:ring-2 focus-visible:ring-cyanGlow"
             >
-              <Mail className="w-4 h-4 text-cyanGlow" />
-              <span>START A CONVERSATION</span>
+              <Compass className="w-4 h-4 text-cyanGlow" />
+              <span>EXPLORE THE LAB</span>
             </a>
           </Magnetic>
         </motion.div>

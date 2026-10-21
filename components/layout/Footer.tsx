@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useTelemetry } from "@/components/providers/TelemetryProvider";
-import { Eye, MousePointerClick } from "lucide-react";
+import { Eye, MousePointerClick, Calendar, ArrowUpRight } from "lucide-react";
+import { BOOKING_URL } from "@/lib/constants";
 
 export function Footer() {
   const { views, clicks, isClickPulsing } = useTelemetry();
@@ -74,6 +75,17 @@ export function Footer() {
           </a>
           <a href="mailto:mahaktech90@gmail.com" className="hover:text-cyanGlow transition-colors py-2">
             Email
+          </a>
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-electric/40 bg-electric/15 text-cyanGlow hover:bg-electric hover:text-white transition-all duration-200 text-xs font-mono tracking-wider uppercase shadow-[0_0_12px_rgba(0,102,255,0.2)] hover:shadow-neon-cyan focus:outline-none focus-visible:ring-2 focus-visible:ring-cyanGlow"
+            aria-label="Book a Discovery Call with MahakTech (opens in a new tab)"
+          >
+            <Calendar className="w-3.5 h-3.5" />
+            <span>Book a Call</span>
+            <ArrowUpRight className="w-3 h-3 opacity-80" />
           </a>
         </nav>
       </div>

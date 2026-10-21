@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight, Mail, Youtube, Eye, MousePointerClick } from "lucide-react";
+import { Menu, X, ArrowUpRight, Mail, Youtube, Eye, MousePointerClick, Calendar } from "lucide-react";
 import { useTelemetry } from "@/components/providers/TelemetryProvider";
+import { BOOKING_URL } from "@/lib/constants";
 
 const NAV_LINKS = [
   { name: "Home", href: "#hero" },
@@ -132,11 +133,15 @@ export function Navbar() {
             </a>
 
             <a
-              href="mailto:mahaktech90@gmail.com"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs tracking-wider uppercase text-white bg-electric/20 border border-electric/50 hover:bg-electric hover:border-cyanGlow transition-all duration-200 shadow-[0_0_15px_rgba(0,102,255,0.25)] hover:shadow-neon-blue"
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs tracking-wider uppercase text-white bg-gradient-to-r from-electric to-royal-600 hover:from-cyanGlow hover:to-electric transition-all duration-200 shadow-neon-blue hover:shadow-neon-cyan focus:outline-none focus-visible:ring-2 focus-visible:ring-cyanGlow"
+              aria-label="Book a Discovery Call with MahakTech (opens in a new tab)"
             >
-              <Mail className="w-3.5 h-3.5 text-cyanGlow" />
-              <span>Let&apos;s Connect</span>
+              <Calendar className="w-3.5 h-3.5 text-cyanGlow" />
+              <span>Book a Call</span>
+              <ArrowUpRight className="w-3.5 h-3.5 opacity-80" />
             </a>
           </div>
 
@@ -206,13 +211,24 @@ export function Navbar() {
               </div>
 
               <span className="text-[11px] font-mono tracking-widest text-slate-400 uppercase">
-                Direct Contact
+                Schedule & Connect
               </span>
               <a
-                href="mailto:mahaktech90@gmail.com"
-                className="flex items-center justify-center gap-2 w-full py-3 rounded-full bg-gradient-to-r from-electric to-royal-600 text-white font-mono text-sm tracking-wider shadow-neon-blue"
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2.5 w-full py-3.5 rounded-full bg-gradient-to-r from-electric to-royal-600 hover:from-cyanGlow hover:to-electric text-white font-mono text-xs tracking-wider uppercase shadow-neon-blue transition-all min-h-[48px] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyanGlow"
+                aria-label="Book a Discovery Call with MahakTech (opens in a new tab)"
               >
-                <Mail className="w-4 h-4" />
+                <Calendar className="w-4 h-4 text-cyanGlow" />
+                <span>Book a Discovery Call</span>
+                <ArrowUpRight className="w-3.5 h-3.5 opacity-80" />
+              </a>
+              <a
+                href="mailto:mahaktech90@gmail.com"
+                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-space-900 border border-slate-800 text-slate-300 hover:text-white font-mono text-xs tracking-wider min-h-[44px]"
+              >
+                <Mail className="w-3.5 h-3.5 text-cyanGlow" />
                 <span>mahaktech90@gmail.com</span>
               </a>
               <div className="flex justify-center flex-wrap gap-5 pt-2 text-xs font-mono text-slate-400">

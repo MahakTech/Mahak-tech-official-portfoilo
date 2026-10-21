@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, Youtube, ArrowUpRight, Copy, Check } from "lucide-react";
+import { Mail, Github, Linkedin, Youtube, ArrowUpRight, Copy, Check, Calendar } from "lucide-react";
+import { BOOKING_URL } from "@/lib/constants";
 
 const EMAIL = "mahaktech90@gmail.com";
 const GITHUB = "https://github.com/MahakTech";
@@ -52,9 +53,61 @@ export function ContactSection() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {/* Email */}
-          <div className="group relative p-6 rounded-2xl glass-panel hover:glass-panel-glow transition-all flex flex-col justify-between">
+        {/* Prominent Discovery Call Booking Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.05 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mt-12 p-8 sm:p-10 rounded-3xl glass-panel border border-electric/40 bg-gradient-to-b from-space-900/90 via-space-950 to-space-950 flex flex-col md:flex-row items-center justify-between gap-8 shadow-glass-elevated relative overflow-hidden"
+        >
+          {/* Ambient Glow */}
+          <div className="absolute top-0 right-0 w-80 h-80 bg-electric/15 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
+
+          <div className="space-y-3 text-center md:text-left relative z-10 max-w-xl">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-electric/30 bg-electric/10 text-cyanGlow text-xs font-mono tracking-widest uppercase">
+              <Calendar className="w-3.5 h-3.5" />
+              <span>DISCOVERY CALL</span>
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight uppercase">
+              Schedule Your Discovery Call
+            </h3>
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+              Have a project in mind? Book a discovery call and let&apos;s discuss how MahakTech can bring your vision to life.
+            </p>
+          </div>
+
+          <div className="relative z-10 shrink-0 w-full sm:w-auto flex flex-col items-center sm:items-end gap-2">
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 min-h-[50px] rounded-full font-mono text-xs sm:text-sm tracking-wider uppercase text-white bg-gradient-to-r from-electric via-royal-500 to-cyanGlow hover:from-cyanGlow hover:to-electric transition-all duration-300 shadow-neon-blue hover:shadow-neon-cyan focus:outline-none focus-visible:ring-2 focus-visible:ring-cyanGlow font-bold"
+              aria-label="Book a Discovery Call with MahakTech (opens in a new tab)"
+            >
+              <Calendar className="w-4 h-4 text-cyanGlow" />
+              <span>Book a Discovery Call</span>
+              <ArrowUpRight className="w-4 h-4 opacity-80" />
+            </a>
+            <span className="text-[11px] font-mono text-slate-400">
+              Opens Google Forms • Free Consultation
+            </span>
+          </div>
+        </motion.div>
+
+        {/* Direct Communication Channels */}
+        <div className="mt-14">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-px bg-slate-800/80 flex-1" />
+            <span className="text-xs font-mono uppercase tracking-widest text-slate-400">
+              Or connect directly via
+            </span>
+            <div className="h-px bg-slate-800/80 flex-1" />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {/* Email */}
+            <div className="group relative p-6 rounded-2xl glass-panel hover:glass-panel-glow transition-all flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-5">
                 <span className="text-xs font-mono tracking-widest text-cyanGlow">EMAIL</span>
@@ -149,6 +202,7 @@ export function ContactSection() {
           </a>
         </div>
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
 }
