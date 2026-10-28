@@ -30,6 +30,9 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
   },
+  verification: {
+    google: "google1cd81b9d6e541ca8",
+  },
 };
 
 export const viewport: Viewport = {
